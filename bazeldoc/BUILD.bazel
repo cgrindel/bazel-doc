@@ -1,1 +1,22 @@
-# Intentionally blank
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(default_visibility = ["//visibility:public"])
+
+bzl_library(
+    name = "deps",
+    srcs = ["deps.bzl"],
+    deps = [
+        "@bazel_tools//tools/build_defs/repo:lib",
+    ],
+)
+
+bzl_library(
+    name = "bazeldoc",
+    srcs = ["bazeldoc.bzl"],
+    deps = [
+        "//bazeldoc/internal:doc_for_provs",
+        "//bazeldoc/internal:providers",
+        "//bazeldoc/internal:write_file_list",
+        "//bazeldoc/internal:write_header",
+    ],
+)

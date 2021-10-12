@@ -1,8 +1,8 @@
 workspace(name = "cgrindel_bazel_doc")
 
-load("//lib:deps.bzl", "bazel_doc_dependencies")
+load("//bazeldoc:deps.bzl", "bazeldoc_dependencies")
 
-bazel_doc_dependencies()
+bazeldoc_dependencies()
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 

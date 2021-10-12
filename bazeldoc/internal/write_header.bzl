@@ -1,4 +1,3 @@
-load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load(":write_doc.bzl", "write_doc")
 load(":doc_utilities.bzl", "doc_utilities")
 
@@ -8,8 +7,7 @@ def write_header(
         header_content = [],
         doc_provs = [],
         do_not_edit_warning = True):
-    """Defines a target that writes a header file that will be used as a 
-    header template for a `stardoc` rule.
+    """Defines a target that writes a header file that will be used as a header template for a `stardoc` rule.
 
     Args:
         name: The name of the target.

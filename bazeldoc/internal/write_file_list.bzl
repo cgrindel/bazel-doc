@@ -8,8 +8,7 @@ def write_file_list(
         doc_provs = [],
         doc_path = "doc",
         do_not_edit_warning = True):
-    """Defines a target that writes a documentation file that contains a 
-    header and a list of files.
+    """Defines a target that writes a documentation file that contains a header and a list of files.
 
     Args:
         name: The name of the target.
