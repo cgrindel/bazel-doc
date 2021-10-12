@@ -1,6 +1,18 @@
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
 
 def update_doc(doc_provs, doc_path = "doc"):
+    """Defines an executable target that copies the documentation from the 
+    output directory to the workspace directory.
+
+    Args:
+        doc_provs: A `list` of document provider `struct` values as returned
+                   from `providers.create()`.
+        doc_path: The relative path for the documentation directory. Do not
+                  include a leading or trailing slash.
+
+    Returns:
+        None.
+    """
     write_file(
         name = "gen_update",
         out = "update.sh",

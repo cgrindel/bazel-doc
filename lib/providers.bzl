@@ -1,3 +1,5 @@
+"""Defines functions for creating document provider `struct` values."""
+
 def _create(
         name,
         stardoc_input,

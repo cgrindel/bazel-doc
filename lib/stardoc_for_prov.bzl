@@ -1,6 +1,14 @@
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 
 def stardoc_for_prov(doc_prov):
+    """Defines a `stardoc` target for a document provider.
+
+    Args:
+        doc_prov: A `struct` as returned from `providers.create()`.
+
+    Returns:
+        None.
+    """
     stardoc(
         name = doc_prov.name,
         out = doc_prov.out_basename,
@@ -11,6 +19,15 @@ def stardoc_for_prov(doc_prov):
     )
 
 def stardoc_for_provs(doc_provs):
+    """Defines a `stardoc` for each of the provided document providers.
+
+    Args:
+        doc_provs: A `list` of document provider `struct` values as returned
+                   from `providers.create()`.
+
+    Returns:
+        None.
+    """
     [
         stardoc_for_prov(
             doc_prov = doc_prov,
