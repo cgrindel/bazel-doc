@@ -91,7 +91,9 @@ def _create_api(name, stardoc_input, deps):
     Returns:
       A `struct` representing a documentation provider.
     """
-    api_name = name + "_api"
+
+    # api_name = name + "_api"
+    api_name = name
     return _create(
         name = api_name,
         stardoc_input = stardoc_input,
