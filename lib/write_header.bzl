@@ -13,7 +13,6 @@ def write_header(name, out = None, header_content = [], doc_provs = [], do_not_e
         ])
         content.extend(
             [doc_utilities.toc_entry(r, "#{0}".format(r)) for r in doc_provs],
-            # ["  * [{0}](#{0})".format(r) for r in doc_provs],
         )
     content.append("")
 

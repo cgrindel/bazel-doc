@@ -1,6 +1,7 @@
 def _create(
         name,
         stardoc_input,
+        deps,
         doc_label = None,
         out_basename = None,
         doc_basename = None,
@@ -14,6 +15,9 @@ def _create(
         name: A `string` which identifies the doc output. If no `symbols`
               are provided, all of the symbols which are defined in the
               corresponding `.bzl` file are documented.
+        stardoc_input: A `string` representing the input label provided to the
+               `stardoc` declaration.
+        deps: A `list` of deps for the stardoc rule.
         doc_label: Optional. A `string` which is the doc label name.
         out_basename: Optional. A `string` which is the basename for the
                       output file.
@@ -27,8 +31,6 @@ def _create(
                  in the documentation.
         is_stardoc: A `bool` indicating whether a `stardoc` declaration should
                     be created.
-        stardoc_input: A `string` representing the input label provided to the
-               `stardoc` declaration.
 
     Returns:
       A `struct` representing a documentation provider.
@@ -44,6 +46,8 @@ def _create(
 
     return struct(
         name = name,
+        stardoc_input = stardoc_input,
+        deps = deps,
         doc_label = doc_label,
         out_basename = out_basename,
         doc_basename = doc_basename,
@@ -51,14 +55,16 @@ def _create(
         header_basename = header_basename,
         symbols = symbols,
         is_stardoc = is_stardoc,
-        stardoc_input = stardoc_input,
     )
 
-def _create_with_symbols(name, stardoc_input, symbols = []):
+def _create_with_symbols(name, stardoc_input, deps, symbols = []):
     """Create a documentation provider using a list of symbols and appropriate defaults.
 
     Args:
         name: A `string` which identifies the doc output.
+        stardoc_input: A `string` representing the input label provided to the
+               `stardoc` declaration.
+        deps: A `list` of deps for the stardoc rule.
         symbols: A `list` of symbol names that should be included
                  in the documentation.
 
@@ -68,15 +74,19 @@ def _create_with_symbols(name, stardoc_input, symbols = []):
     return _create(
         name = name,
         stardoc_input = stardoc_input,
+        deps = deps,
         header_label = name + "_header",
         symbols = symbols,
     )
 
-def _create_api(name, stardoc_input):
+def _create_api(name, stardoc_input, deps):
     """Create a documentation provider for an API file/struct.
 
     Args:
         name: A `string` which identifies the doc output.
+        stardoc_input: A `string` representing the input label provided to the
+               `stardoc` declaration.
+        deps: A `list` of deps for the stardoc rule.
 
     Returns:
       A `struct` representing a documentation provider.
@@ -85,6 +95,7 @@ def _create_api(name, stardoc_input):
     return _create(
         name = api_name,
         stardoc_input = stardoc_input,
+        deps = deps,
         header_label = api_name + "_header",
         symbols = [name],
     )
