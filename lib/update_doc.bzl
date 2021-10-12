@@ -1,3 +1,5 @@
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
+
 def update_doc(doc_provs, doc_path = "doc"):
     write_file(
         name = "gen_update",
@@ -15,7 +17,7 @@ def update_doc(doc_provs, doc_path = "doc"):
         ],
     )
 
-    sh_binary(
+    native.sh_binary(
         name = "update",
         srcs = ["update.sh"],
         data = [doc_prov.out_basename for doc_prov in doc_provs],
