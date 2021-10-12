@@ -1,5 +1,5 @@
 def _link(label, url):
-    return "[{label}]({url}".format(
+    return "[{label}]({url})".format(
         label = label,
         url = url,
     )
