@@ -41,7 +41,9 @@ def _create(
         out_basename = name + ".md_"
     if doc_basename == None:
         doc_basename = name + ".md"
-    if header_basename == None and header_label != None:
+    if header_label == None:
+        header_label = name + "_header"
+    if header_basename == None:
         header_basename = header_label + ".vm"
 
     return struct(
@@ -57,53 +59,6 @@ def _create(
         is_stardoc = is_stardoc,
     )
 
-def _create_with_symbols(name, stardoc_input, deps, symbols = []):
-    """Create a documentation provider using a list of symbols and appropriate defaults.
-
-    Args:
-        name: A `string` which identifies the doc output.
-        stardoc_input: A `string` representing the input label provided to the
-               `stardoc` declaration.
-        deps: A `list` of deps for the stardoc rule.
-        symbols: A `list` of symbol names that should be included
-                 in the documentation.
-
-    Returns:
-      A `struct` representing a documentation provider.
-    """
-    return _create(
-        name = name,
-        stardoc_input = stardoc_input,
-        deps = deps,
-        header_label = name + "_header",
-        symbols = symbols,
-    )
-
-def _create_api(name, stardoc_input, deps):
-    """Create a documentation provider for an API file/struct.
-
-    Args:
-        name: A `string` which identifies the doc output.
-        stardoc_input: A `string` representing the input label provided to the
-               `stardoc` declaration.
-        deps: A `list` of deps for the stardoc rule.
-
-    Returns:
-      A `struct` representing a documentation provider.
-    """
-
-    # api_name = name + "_api"
-    api_name = name
-    return _create(
-        name = api_name,
-        stardoc_input = stardoc_input,
-        deps = deps,
-        header_label = api_name + "_header",
-        symbols = [name],
-    )
-
 providers = struct(
     create = _create,
-    create_with_symbols = _create_with_symbols,
-    create_api = _create_api,
 )
