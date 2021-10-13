@@ -15,16 +15,16 @@ _API_SRCS = [
     "providers",
 ]
 
-_DOC_WITH_SYMBOLS = {
-    "build_rules": [
-        "doc_for_provs",
-        "write_header",
-        "write_file_list",
-    ],
-    "workspace_rules": [
-        "bazeldoc_dependencies",
-    ],
-}
+# _DOC_WITH_SYMBOLS = {
+#     "build_rules": [
+#         "doc_for_provs",
+#         "write_header",
+#         "write_file_list",
+#     ],
+#     "workspace_rules": [
+#         "bazeldoc_dependencies",
+#     ],
+# }
 
 _API_DOC_PROVIDERS = [
     doc_providers.create(
@@ -36,18 +36,42 @@ _API_DOC_PROVIDERS = [
     for name in _API_SRCS
 ]
 
+# _ALL_DOC_PROVIDERS = [
+#     doc_providers.create(
+#         name = name + "_overview",
+#         stardoc_input = "//bazeldoc:bazeldoc.bzl",
+#         symbols = symbols,
+#         deps = ["//bazeldoc"],
+#     )
+#     for [
+#         name,
+#         symbols,
+#     ] in _DOC_WITH_SYMBOLS.items()
+# ] + [
+
+_BUILD_RULES_PROV = doc_providers.create(
+    name = "build_rules_overview",
+    stardoc_input = "//bazeldoc:bazeldoc.bzl",
+    symbols = [
+        "doc_for_provs",
+        "write_header",
+        "write_file_list",
+    ],
+    deps = ["//bazeldoc"],
+)
+
+# _WORKSPACE_RULES_PROV = doc_providers.create(
+#     name = "workspace_rules_overview",
+#     stardoc_input = "//bazeldoc:deps.bzl",
+#     symbols = [
+#         "bazeldoc_dependencies",
+#     ],
+#     deps = ["//bazeldoc"],
+# )
+
 _ALL_DOC_PROVIDERS = [
-    doc_providers.create(
-        name = name + "_overview",
-        stardoc_input = "//bazeldoc:bazeldoc.bzl",
-        symbols = symbols,
-        deps = ["//bazeldoc"],
-    )
-    for [
-        name,
-        symbols,
-    ] in _DOC_WITH_SYMBOLS.items()
-] + [
+    _BUILD_RULES_PROV,
+    # _WORKSPACE_RULES_PROV,
     doc_providers.create(
         name = "api",
         is_stardoc = False,
@@ -77,25 +101,27 @@ write_file_list(
 
 write_header(
     name = "build_rules_overview_header",
-    doc_provs = _DOC_WITH_SYMBOLS["build_rules"],
     header_content = [
         "# Build Rules",
         "",
         "The macros described below are used to generate, test and copy ",
         "Starlark documentation.",
     ],
+    # doc_provs = _DOC_WITH_SYMBOLS["build_rules"],
+    symbols = _BUILD_RULES_PROV.symbols,
 )
 
-write_header(
-    name = "workspace_rules_overview_header",
-    doc_provs = _DOC_WITH_SYMBOLS["workspace_rules"],
-    header_content = [
-        "# Workspace Rules",
-        "",
-        "The functions described below are used in your WORKSPACE file to",
-        "confgure `bazeldoc`.",
-    ],
-)
+# write_header(
+#     name = "workspace_rules_overview_header",
+#     header_content = [
+#         "# Workspace Rules",
+#         "",
+#         "The functions described below are used in your WORKSPACE file to",
+#         "confgure `bazeldoc`.",
+#     ],
+#     # doc_provs = _DOC_WITH_SYMBOLS["workspace_rules"],
+#     symbols = _WORKSPACE_RULES_PROV.symbols,
+# )
 
 # Write the API headers
 [

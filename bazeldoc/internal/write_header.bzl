@@ -5,7 +5,7 @@ def write_header(
         name,
         out = None,
         header_content = [],
-        doc_provs = [],
+        symbols = [],
         do_not_edit_warning = True):
     """Defines a target that writes a header file that will be used as a header template for a `stardoc` rule.
 
@@ -14,8 +14,7 @@ def write_header(
         out: The basename of the output filename as a `string`.
         header_content: A `list` of strings representing the header content of
                         the file.
-        doc_provs: A `list` of document provider `struct` values as returned
-                   from `providers.create()`.
+        symbols: A `list` of symbol names that will be included in the documentation.
         do_not_edit_warning: A `bool` specifying whether a comment should be
                              added to the top of the written file.
 
@@ -24,14 +23,14 @@ def write_header(
     """
     content = []
     content.extend(header_content)
-    if doc_provs != []:
+    if symbols != []:
         content.extend([
             "",
             "On this page:",
             "",
         ])
         content.extend(
-            [doc_utilities.toc_entry(r, "#{0}".format(r)) for r in doc_provs],
+            [doc_utilities.toc_entry(s, "#{0}".format(s)) for s in symbols],
         )
     content.append("")
 
