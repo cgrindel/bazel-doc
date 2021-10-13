@@ -2,16 +2,9 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 package(default_visibility = ["//visibility:public"])
 
+# NOTE: We cannot create a bzl_library for deps.bzl because it references @bazel_tools.
+# Issue: https://github.com/bazelbuild/bazel-skylib/issues/127
 exports_files(["deps.bzl"])
-
-# bzl_library(
-#     name = "deps",
-#     srcs = ["deps.bzl"],
-#     deps = [
-#         "@bazel_tools//tools/build_defs/repo:http.bzl",
-#         "@bazel_tools//tools/build_defs/repo:utils.bzl",
-#     ],
-# )
 
 bzl_library(
     name = "bazeldoc",
