@@ -38,7 +38,6 @@ _BUILD_RULES_PROV = doc_providers.create(
 
 _ALL_DOC_PROVIDERS = [
     _BUILD_RULES_PROV,
-    # _WORKSPACE_RULES_PROV,
     doc_providers.create(
         name = "api",
         is_stardoc = False,
@@ -49,7 +48,6 @@ _ALL_DOC_PROVIDERS = [
 
 # MARK: - Special Case api.md
 
-# Write the api.md_ file as a special case.
 write_file_list(
     name = "api_doc",
     out = "api.md_",
@@ -74,7 +72,6 @@ write_header(
         "The macros described below are used to generate, test and copy ",
         "Starlark documentation.",
     ],
-    # doc_provs = _DOC_WITH_SYMBOLS["build_rules"],
     symbols = _BUILD_RULES_PROV.symbols,
 )
 
