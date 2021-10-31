@@ -32,5 +32,7 @@ def update_doc(doc_provs, doc_path = "doc"):
         name = "update",
         srcs = ["update.sh"],
         data = [doc_prov.out_basename for doc_prov in doc_provs],
+        # The '@' in the following visibility is important. It makes the
+        # target visible relative to the repository where it is being used.
         visibility = ["@//visibility:public"],
     )
