@@ -32,5 +32,5 @@ def update_doc(doc_provs, doc_path = "doc"):
         name = "update",
         srcs = ["update.sh"],
         data = [doc_prov.out_basename for doc_prov in doc_provs],
-        visibility = ["//visibility:public"],
+        visibility = ["@//visibility:public"],
     )
