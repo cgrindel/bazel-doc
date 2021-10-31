@@ -20,9 +20,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "cgrindel_bazel_doc",
-    sha256 = "bae4a0f41cc5cf89f26c779fc04379f09bb290b4910b2cf206c0372ad0c8aac7",
-    strip_prefix = "bazel-doc-0.1.0",
-    urls = ["https://github.com/cgrindel/bazel-doc/archive/v0.1.0.tar.gz"],
+    sha256 = "26b269eec6dda36f3f24a4ffef1b997f057c78a53300e6c83a110cd79cd0918e",
+    strip_prefix = "bazel-doc-0.1.1",
+    urls = ["https://github.com/cgrindel/bazel-doc/archive/v0.1.1.tar.gz"],
 )
 
 load("@cgrindel_bazel_doc//bazeldoc:deps.bzl", "bazeldoc_dependencies")
