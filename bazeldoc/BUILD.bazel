@@ -1,3 +1,4 @@
+load("@cgrindel_rules_bzlformat//bzlformat:bzlformat.bzl", "bzlformat_pkg")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 package(default_visibility = ["//visibility:public"])
@@ -16,3 +17,5 @@ bzl_library(
         "//bazeldoc/internal:write_header",
     ],
 )
+
+bzlformat_pkg(name = "bzlformat")

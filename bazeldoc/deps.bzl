@@ -22,3 +22,11 @@ def bazeldoc_dependencies():
             "https://github.com/bazelbuild/stardoc/releases/download/0.5.0/stardoc-0.5.0.tar.gz",
         ],
     )
+
+    maybe(
+        http_archive,
+        name = "cgrindel_rules_bzlformat",
+        sha256 = "b45b392613092b42c4ee94051be104b990e3c8651dea17410dfd63b98957cd57",
+        strip_prefix = "rules_bzlformat-0.1.0",
+        urls = ["https://github.com/cgrindel/rules_bzlformat/archive/v0.1.0.tar.gz"],
+    )
