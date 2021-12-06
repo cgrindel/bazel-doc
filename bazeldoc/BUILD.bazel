@@ -3,6 +3,8 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 package(default_visibility = ["//visibility:public"])
 
+bzlformat_pkg(name = "bzlformat")
+
 # NOTE: We cannot create a bzl_library for deps.bzl because it references @bazel_tools.
 # Issue: https://github.com/bazelbuild/bazel-skylib/issues/127
 exports_files(["deps.bzl"])
@@ -17,5 +19,3 @@ bzl_library(
         "//bazeldoc/internal:write_header",
     ],
 )
-
-bzlformat_pkg(name = "bzlformat")
