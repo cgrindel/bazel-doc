@@ -1,5 +1,8 @@
 # Macros for Generating Starlark Documentation
 
+__NOTE: The functionality for this repository has moved to [cgrindel/bazel-starlib](https://github.com/cgrindel/bazel-starlib).__
+
+
 This repository contains macros and APIs that reduce some of the boilerplate when generating
 documentation for Starlark code.
 
